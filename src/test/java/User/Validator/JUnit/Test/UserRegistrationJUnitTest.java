@@ -9,5 +9,10 @@ import static org.junit.Assert.*;
 import org.junit.Assert;
 
 public class UserRegistrationJUnitTest {
-	
+	@Test
+	public void TestValidateFirstName() {
+		UserRegistrationJUnit firstNameValidator = new UserRegistrationJUnit();
+		boolean found = firstNameValidator.FirstNameValidation("Soumik");
+		Assert.assertTrue(found);
+	}
 }
