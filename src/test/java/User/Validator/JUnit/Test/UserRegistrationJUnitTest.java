@@ -57,4 +57,11 @@ public class UserRegistrationJUnitTest {
     	boolean found = passwordValidator.PasswordRule3Validation("Resurrection9");
     	Assert.assertTrue(found);
     }
+	
+	@Test
+    public void TestValidatePasswordRule4() {
+    	UserRegistrationJUnit passwordValidator = new UserRegistrationJUnit();
+    	boolean found = passwordValidator.PasswordRule4Validation("Resurrection@9");
+    	Assert.assertTrue(found);
+    }
 }
