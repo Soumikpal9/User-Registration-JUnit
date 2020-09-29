@@ -29,4 +29,11 @@ public class UserRegistrationJUnitTest {
     	boolean found = mobileNumberValidator.MobileNumberValidation("91 9999999999");
     	Assert.assertTrue(found);
     }
+	
+	@Test
+    public void TestValidateEmail() {
+    	UserRegistrationJUnit emailValidator = new UserRegistrationJUnit();
+    	boolean found = emailValidator.ValidateEmail("soumikpal@gmail.com");
+    	Assert.assertTrue(found);
+    }
 }
