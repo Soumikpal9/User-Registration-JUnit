@@ -45,4 +45,17 @@ public class UserRegistrationJUnit {
 			return false;
 		}
 	}
+	
+	public boolean ValidateEmail(String input) {
+		String regex = "^[A-Z 0-9]+[A-Z 0-9 +._-]*@[A-Z 0-9]+.[A-Z]+[A-Z .]*$";
+		Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
+		Matcher matcher = pattern.matcher(input);
+		boolean found = matcher.find();
+		if(found) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 }
