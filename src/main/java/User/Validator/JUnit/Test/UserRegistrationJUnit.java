@@ -19,4 +19,17 @@ public class UserRegistrationJUnit {
 			return false;
 		}
 	}
+	
+	public boolean LastNameValidation(String input) {
+		String regex = "^[A-Z]+[a-z A-Z]{2,}";
+		Pattern pattern = Pattern.compile(regex);
+		Matcher matcher = pattern.matcher(input);
+		boolean found = matcher.find();
+		if(found) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 }
