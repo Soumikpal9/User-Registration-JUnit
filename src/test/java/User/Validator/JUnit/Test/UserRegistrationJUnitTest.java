@@ -10,58 +10,60 @@ import org.junit.Assert;
 
 public class UserRegistrationJUnitTest {
 	@Test
-	public void TestValidateFirstName() {
+	public void TestValidateHappy() {
 		UserRegistrationJUnit firstNameValidator = new UserRegistrationJUnit();
-		boolean found = firstNameValidator.FirstNameValidation("Soumik");
-		Assert.assertTrue(found);
-	}
-	
-	@Test
-	public void TestValidateLastName() {
+		boolean found1 = firstNameValidator.FirstNameValidation("Soumik");
+		
 		UserRegistrationJUnit lastNameValidator = new UserRegistrationJUnit();
-		boolean found = lastNameValidator.LastNameValidation("Pal");
-		Assert.assertTrue(found);
+		boolean found2 = lastNameValidator.LastNameValidation("Pal");
+		
+		UserRegistrationJUnit mobileNumberValidator = new UserRegistrationJUnit();
+    	boolean found3 = mobileNumberValidator.MobileNumberValidation("91 9999999999");
+    	
+    	UserRegistrationJUnit emailValidator = new UserRegistrationJUnit();
+    	boolean found4 = emailValidator.ValidateEmail("soumik.pal@gmail.co.in");
+    	
+    	UserRegistrationJUnit passwordValidator = new UserRegistrationJUnit();
+    	boolean found5 = passwordValidator.PasswordRule1Validation("Resurrection9");
+    	
+    	UserRegistrationJUnit passwordValidator1 = new UserRegistrationJUnit();
+    	boolean found6 = passwordValidator1.PasswordRule2Validation("Resurrection9");
+    	
+    	UserRegistrationJUnit passwordValidator2 = new UserRegistrationJUnit();
+    	boolean found7 = passwordValidator2.PasswordRule3Validation("Resurrection9");
+    	
+    	UserRegistrationJUnit passwordValidator3 = new UserRegistrationJUnit();
+    	boolean found8 = passwordValidator3.PasswordRule4Validation("Resurrection@9");
+    	
+    	Assert.assertTrue(found1 && found2 && found3 && found4 && found5 && found6 && found7 && found8);
 	}
 	
 	@Test
-    public void TestValidateMobilNumber() {
-    	UserRegistrationJUnit mobileNumberValidator = new UserRegistrationJUnit();
-    	boolean found = mobileNumberValidator.MobileNumberValidation("91 9999999999");
-    	Assert.assertTrue(found);
-    }
-	
-	@Test
-    public void TestValidateEmail() {
+	public void TestValidateSad() {
+		UserRegistrationJUnit firstNameValidator = new UserRegistrationJUnit();
+		boolean found1 = firstNameValidator.FirstNameValidation("Soumik");
+		
+		UserRegistrationJUnit lastNameValidator = new UserRegistrationJUnit();
+		boolean found2 = lastNameValidator.LastNameValidation("Pal");
+		
+		UserRegistrationJUnit mobileNumberValidator = new UserRegistrationJUnit();
+    	boolean found3 = mobileNumberValidator.MobileNumberValidation("91 9999999999");
+    	
     	UserRegistrationJUnit emailValidator = new UserRegistrationJUnit();
-    	boolean found = emailValidator.ValidateEmail("soumik.pal@gmail.co.in");
-    	Assert.assertTrue(found);
-    }
-	
-	@Test
-    public void TestValidatePasswordRule1() {
+    	boolean found4 = emailValidator.ValidateEmail("soumik.pal@gmail.co.in");
+    	
     	UserRegistrationJUnit passwordValidator = new UserRegistrationJUnit();
-    	boolean found = passwordValidator.PasswordRule1Validation("Resurrection9");
-    	Assert.assertTrue(found);
-    }
-	
-	@Test
-    public void TestValidatePasswordRule2() {
-    	UserRegistrationJUnit passwordValidator = new UserRegistrationJUnit();
-    	boolean found = passwordValidator.PasswordRule2Validation("Resurrection9");
-    	Assert.assertTrue(found);
-    }
-	
-	@Test
-    public void TestValidatePasswordRule3() {
-    	UserRegistrationJUnit passwordValidator = new UserRegistrationJUnit();
-    	boolean found = passwordValidator.PasswordRule3Validation("Resurrection9");
-    	Assert.assertTrue(found);
-    }
-	
-	@Test
-    public void TestValidatePasswordRule4() {
-    	UserRegistrationJUnit passwordValidator = new UserRegistrationJUnit();
-    	boolean found = passwordValidator.PasswordRule4Validation("Resurrection@9");
-    	Assert.assertTrue(found);
-    }
+    	boolean found5 = passwordValidator.PasswordRule1Validation("Resurrection9");
+    	
+    	UserRegistrationJUnit passwordValidator1 = new UserRegistrationJUnit();
+    	boolean found6 = passwordValidator1.PasswordRule2Validation("Resurrection9");
+    	
+    	UserRegistrationJUnit passwordValidator2 = new UserRegistrationJUnit();
+    	boolean found7 = passwordValidator2.PasswordRule3Validation("Resurrection9");
+    	
+    	UserRegistrationJUnit passwordValidator3 = new UserRegistrationJUnit();
+    	boolean found8 = passwordValidator3.PasswordRule4Validation("Resurrection@9");
+    	
+    	Assert.assertTrue(!found1 || !found2 || !found3 || !found4 || !found5 || !found6 || !found7 || !found8);
+	}
 }
