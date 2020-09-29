@@ -22,4 +22,11 @@ public class UserRegistrationJUnitTest {
 		boolean found = lastNameValidator.LastNameValidation("Pal");
 		Assert.assertTrue(found);
 	}
+	
+	@Test
+    public void TestValidateMobilNumber() {
+    	UserRegistrationJUnit mobileNumberValidator = new UserRegistrationJUnit();
+    	boolean found = mobileNumberValidator.MobileNumberValidation("91 9999999999");
+    	Assert.assertTrue(found);
+    }
 }

@@ -32,4 +32,17 @@ public class UserRegistrationJUnit {
 			return false;
 		}
 	}
+	
+	public boolean MobileNumberValidation(String input) {
+		String regex = "^[0-9]{2}\s[0-9]{10}$";
+		Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
+		Matcher matcher = pattern.matcher(input);
+		boolean found = matcher.find();
+		if(found) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 }
