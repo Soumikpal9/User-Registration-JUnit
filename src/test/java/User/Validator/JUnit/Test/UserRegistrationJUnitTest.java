@@ -33,7 +33,7 @@ public class UserRegistrationJUnitTest {
 	@Test
     public void TestValidateEmail() {
     	UserRegistrationJUnit emailValidator = new UserRegistrationJUnit();
-    	boolean found = emailValidator.ValidateEmail("soumikpal@gmail.com");
+    	boolean found = emailValidator.ValidateEmail("soumik.pal@gmail.co.in");
     	Assert.assertTrue(found);
     }
 	
