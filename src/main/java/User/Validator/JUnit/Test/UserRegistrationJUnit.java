@@ -47,7 +47,7 @@ public class UserRegistrationJUnit {
 	}
 	
 	public boolean ValidateEmail(String input) {
-		String regex = "^[A-Z 0-9]+[A-Z 0-9 +._-]*@[A-Z 0-9]+.[A-Z]+[A-Z .]*$";
+		String regex = "^[A-Z]+([+._-]{0,1}([A-Z 0-9]+))*[@][A-Z 0-9]{1,}[.][A-Z]{2,}([.][A-Z]{2,}){0,1}$";
 		Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
 		Matcher matcher = pattern.matcher(input);
 		boolean found = matcher.find();
