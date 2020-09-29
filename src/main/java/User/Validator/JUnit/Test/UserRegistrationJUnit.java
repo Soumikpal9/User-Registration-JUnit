@@ -58,4 +58,17 @@ public class UserRegistrationJUnit {
 			return false;
 		}
 	}
+	
+	public boolean PasswordRule1Validation(String input) {
+		String regex = "[A-Z a-z 0-9]{8,}";
+		Pattern pattern = Pattern.compile(regex);
+		Matcher matcher = pattern.matcher(input);
+		boolean found = matcher.find();
+		if(found) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 }
