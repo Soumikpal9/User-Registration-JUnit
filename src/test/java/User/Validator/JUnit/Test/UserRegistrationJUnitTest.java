@@ -4,66 +4,40 @@
 package User.Validator.JUnit.Test;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+
 import static org.junit.Assert.*;
 
-import org.junit.Assert;
+import java.util.Arrays;
+import java.util.Collection;
 
+import org.junit.Assert;
+import org.junit.Before;
+
+@RunWith(Parameterized.class)
 public class UserRegistrationJUnitTest {
-	@Test
-	public void TestValidateHappy() {
-		UserRegistrationJUnit firstNameValidator = new UserRegistrationJUnit();
-		boolean found1 = firstNameValidator.FirstNameValidation("Soumik");
-		
-		UserRegistrationJUnit lastNameValidator = new UserRegistrationJUnit();
-		boolean found2 = lastNameValidator.LastNameValidation("Pal");
-		
-		UserRegistrationJUnit mobileNumberValidator = new UserRegistrationJUnit();
-    	boolean found3 = mobileNumberValidator.MobileNumberValidation("91 9999999999");
-    	
-    	UserRegistrationJUnit emailValidator = new UserRegistrationJUnit();
-    	boolean found4 = emailValidator.ValidateEmail("soumik.pal@gmail.co.in");
-    	
-    	UserRegistrationJUnit passwordValidator = new UserRegistrationJUnit();
-    	boolean found5 = passwordValidator.PasswordRule1Validation("Resurrection9");
-    	
-    	UserRegistrationJUnit passwordValidator1 = new UserRegistrationJUnit();
-    	boolean found6 = passwordValidator1.PasswordRule2Validation("Resurrection9");
-    	
-    	UserRegistrationJUnit passwordValidator2 = new UserRegistrationJUnit();
-    	boolean found7 = passwordValidator2.PasswordRule3Validation("Resurrection9");
-    	
-    	UserRegistrationJUnit passwordValidator3 = new UserRegistrationJUnit();
-    	boolean found8 = passwordValidator3.PasswordRule4Validation("Resurrection@9");
-    	
-    	Assert.assertTrue(found1 && found2 && found3 && found4 && found5 && found6 && found7 && found8);
+	private String email;
+	private boolean expectedResult;
+	private UserRegistrationJUnit emailValidate;
+	
+	public UserRegistrationJUnitTest(String email, boolean expectedResult) {
+		this.email = email;
+		this.expectedResult = expectedResult;
+	}
+	
+	@Before
+	public void initialize() {
+		emailValidate = new UserRegistrationJUnit();
+	}
+	
+	@Parameterized.Parameters
+	public static Collection input() {
+		return Arrays.asList(new Object[][] {{"abc@yahoo.com", true}, {"abc-100@yahoo.com", true}, {"abc.100@yahoo.com", true}, {"abc111@abc.com", true}, {"abc-100@abc.net", true}, {"abc.100@abc.com.au", true}, {"abc@1.com", true}, {"abc@gamil.com.com", true}, {"abc+100@gmail.com", true}, {"abc", false}, {"abc@.com.my", false}, {"abc123@gmail.a", false}, {"abc123@.com", false}, {".abc@abc.com", false}, {"abc()*@gmail.com", false}, {"abc@%*.com", false}, {"abc..2002@gmail.com", false}, {"abc.@gmail.com", false}, {"abc@abc@gmail.com", false}, {"abc@gmail.com.1u", false}, {"abc@gmail.com.aa.au", false}});
 	}
 	
 	@Test
-	public void TestValidateSad() {
-		UserRegistrationJUnit firstNameValidator = new UserRegistrationJUnit();
-		boolean found1 = firstNameValidator.FirstNameValidation("Soumik");
-		
-		UserRegistrationJUnit lastNameValidator = new UserRegistrationJUnit();
-		boolean found2 = lastNameValidator.LastNameValidation("Pal");
-		
-		UserRegistrationJUnit mobileNumberValidator = new UserRegistrationJUnit();
-    	boolean found3 = mobileNumberValidator.MobileNumberValidation("91 9999999999");
-    	
-    	UserRegistrationJUnit emailValidator = new UserRegistrationJUnit();
-    	boolean found4 = emailValidator.ValidateEmail("soumik.pal@gmail.co.in");
-    	
-    	UserRegistrationJUnit passwordValidator = new UserRegistrationJUnit();
-    	boolean found5 = passwordValidator.PasswordRule1Validation("Resurrection9");
-    	
-    	UserRegistrationJUnit passwordValidator1 = new UserRegistrationJUnit();
-    	boolean found6 = passwordValidator1.PasswordRule2Validation("Resurrection9");
-    	
-    	UserRegistrationJUnit passwordValidator2 = new UserRegistrationJUnit();
-    	boolean found7 = passwordValidator2.PasswordRule3Validation("Resurrection9");
-    	
-    	UserRegistrationJUnit passwordValidator3 = new UserRegistrationJUnit();
-    	boolean found8 = passwordValidator3.PasswordRule4Validation("Resurrection@9");
-    	
-    	Assert.assertTrue(!found1 || !found2 || !found3 || !found4 || !found5 || !found6 || !found7 || !found8);
+	public void TestValidateEmail() {
+		Assert.assertEquals(expectedResult, emailValidate.ValidateEmail(email));
 	}
 }
