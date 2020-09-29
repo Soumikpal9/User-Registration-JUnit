@@ -15,4 +15,11 @@ public class UserRegistrationJUnitTest {
 		boolean found = firstNameValidator.FirstNameValidation("Soumik");
 		Assert.assertTrue(found);
 	}
+	
+	@Test
+	public void TestValidateLastName() {
+		UserRegistrationJUnit lastNameValidator = new UserRegistrationJUnit();
+		boolean found = lastNameValidator.LastNameValidation("Pal");
+		Assert.assertTrue(found);
+	}
 }
