@@ -97,4 +97,21 @@ public class UserRegistrationJUnit {
 			return false;
 		}
 	}
+	
+	public boolean PasswordRule4Validation(String input) {
+		String regex1 = "^[A-Z a-z]*(?=.*[A-Z])(?=.*[0-9])[A-Z a-z 0-9]*.{8,}$";
+		String regex2 = "^(?=.*[0-9 A-Z a-z])[0-9 A-Z a-z]*[$&+,:;=?@#|'<>.-^*()%!][0-9 A-Z a-z]*$";
+		Pattern pattern1 = Pattern.compile(regex1);
+		Pattern pattern2 = Pattern.compile(regex2);
+		Matcher matcher1 = pattern1.matcher(input);
+		Matcher matcher2 = pattern2.matcher(input);
+		boolean found1 = matcher1.find();
+		boolean found2 = matcher2.find();
+		if(found1 && found2) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 }
