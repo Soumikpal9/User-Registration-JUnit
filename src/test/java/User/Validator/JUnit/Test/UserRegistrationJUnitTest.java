@@ -36,4 +36,11 @@ public class UserRegistrationJUnitTest {
     	boolean found = emailValidator.ValidateEmail("soumikpal@gmail.com");
     	Assert.assertTrue(found);
     }
+	
+	@Test
+    public void TestValidatePasswordRule1() {
+    	UserRegistrationJUnit passwordValidator = new UserRegistrationJUnit();
+    	boolean found = passwordValidator.PasswordRule1Validation("Resurrection9");
+    	Assert.assertTrue(found);
+    }
 }
