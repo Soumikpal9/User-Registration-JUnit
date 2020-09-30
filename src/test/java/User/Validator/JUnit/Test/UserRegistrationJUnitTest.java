@@ -10,56 +10,64 @@ import org.junit.Assert;
 
 public class UserRegistrationJUnitTest {
 	@Test
-	public void TestValidateFirstName() {
-		UserRegistrationJUnit firstNameValidator = new UserRegistrationJUnit();
-		boolean found = firstNameValidator.FirstNameValidation("Soumik");
-		Assert.assertTrue(found);
+	public void TestValidateFirstName() throws UserRegistrationException {
+		try {
+			UserRegistrationJUnit firstNameValidator = new UserRegistrationJUnit();
+			boolean found = firstNameValidator.FirstNameValidation(null);
+		}
+		catch(UserRegistrationException e) {
+			Assert.assertEquals(UserRegistrationException.ExceptionType.ENTERED_NULL, e.type);
+		}
 	}
 	
 	@Test
-	public void TestValidateLastName() {
-		UserRegistrationJUnit lastNameValidator = new UserRegistrationJUnit();
-		boolean found = lastNameValidator.LastNameValidation("Pal");
-		Assert.assertTrue(found);
+	public void TestValidateLastName() throws UserRegistrationException {
+		try {
+			UserRegistrationJUnit lastNameValidator = new UserRegistrationJUnit();
+			boolean found = lastNameValidator.LastNameValidation("");
+		}
+		catch(UserRegistrationException e) {
+			Assert.assertEquals(UserRegistrationException.ExceptionType.ENTERED_EMPTY, e.type);
+		}
 	}
 	
 	@Test
-    public void TestValidateMobilNumber() {
+    public void TestValidateMobilNumber() throws UserRegistrationException {
     	UserRegistrationJUnit mobileNumberValidator = new UserRegistrationJUnit();
     	boolean found = mobileNumberValidator.MobileNumberValidation("91 9999999999");
     	Assert.assertTrue(found);
     }
 	
 	@Test
-    public void TestValidateEmail() {
+    public void TestValidateEmail() throws UserRegistrationException {
     	UserRegistrationJUnit emailValidator = new UserRegistrationJUnit();
     	boolean found = emailValidator.ValidateEmail("soumik.pal@gmail.co.in");
     	Assert.assertTrue(found);
     }
 	
 	@Test
-    public void TestValidatePasswordRule1() {
+    public void TestValidatePasswordRule1() throws UserRegistrationException {
     	UserRegistrationJUnit passwordValidator = new UserRegistrationJUnit();
     	boolean found = passwordValidator.PasswordRule1Validation("Resurrection9");
     	Assert.assertTrue(found);
     }
 	
 	@Test
-    public void TestValidatePasswordRule2() {
+    public void TestValidatePasswordRule2() throws UserRegistrationException {
     	UserRegistrationJUnit passwordValidator = new UserRegistrationJUnit();
     	boolean found = passwordValidator.PasswordRule2Validation("Resurrection9");
     	Assert.assertTrue(found);
     }
 	
 	@Test
-    public void TestValidatePasswordRule3() {
+    public void TestValidatePasswordRule3() throws UserRegistrationException {
     	UserRegistrationJUnit passwordValidator = new UserRegistrationJUnit();
     	boolean found = passwordValidator.PasswordRule3Validation("Resurrection9");
     	Assert.assertTrue(found);
     }
 	
 	@Test
-    public void TestValidatePasswordRule4() {
+    public void TestValidatePasswordRule4() throws UserRegistrationException {
     	UserRegistrationJUnit passwordValidator = new UserRegistrationJUnit();
     	boolean found = passwordValidator.PasswordRule4Validation("Resurrection@9");
     	Assert.assertTrue(found);
