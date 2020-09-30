@@ -4,40 +4,72 @@
 package User.Validator.JUnit.Test;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-
 import static org.junit.Assert.*;
 
-import java.util.Arrays;
-import java.util.Collection;
-
 import org.junit.Assert;
-import org.junit.Before;
 
-@RunWith(Parameterized.class)
 public class UserRegistrationJUnitTest {
-	private String email;
-	private boolean expectedResult;
-	private UserRegistrationJUnit emailValidate;
-	
-	public UserRegistrationJUnitTest(String email, boolean expectedResult) {
-		this.email = email;
-		this.expectedResult = expectedResult;
-	}
-	
-	@Before
-	public void initialize() {
-		emailValidate = new UserRegistrationJUnit();
-	}
-	
-	@Parameterized.Parameters
-	public static Collection input() {
-		return Arrays.asList(new Object[][] {{"abc@yahoo.com", true}, {"abc-100@yahoo.com", true}, {"abc.100@yahoo.com", true}, {"abc111@abc.com", true}, {"abc-100@abc.net", true}, {"abc.100@abc.com.au", true}, {"abc@1.com", true}, {"abc@gamil.com.com", true}, {"abc+100@gmail.com", true}, {"abc", false}, {"abc@.com.my", false}, {"abc123@gmail.a", false}, {"abc123@.com", false}, {".abc@abc.com", false}, {"abc()*@gmail.com", false}, {"abc@%*.com", false}, {"abc..2002@gmail.com", false}, {"abc.@gmail.com", false}, {"abc@abc@gmail.com", false}, {"abc@gmail.com.1u", false}, {"abc@gmail.com.aa.au", false}});
+	@Test
+	public void TestValidateFirstName() throws UserRegistrationException {
+		try {
+			UserRegistrationJUnit firstNameValidator = new UserRegistrationJUnit();
+			boolean found = firstNameValidator.FirstNameValidation(null);
+		}
+		catch(UserRegistrationException e) {
+			Assert.assertEquals(UserRegistrationException.ExceptionType.ENTERED_NULL, e.type);
+		}
 	}
 	
 	@Test
-	public void TestValidateEmail() {
-		Assert.assertEquals(expectedResult, emailValidate.ValidateEmail(email));
+	public void TestValidateLastName() throws UserRegistrationException {
+		try {
+			UserRegistrationJUnit lastNameValidator = new UserRegistrationJUnit();
+			boolean found = lastNameValidator.LastNameValidation("");
+		}
+		catch(UserRegistrationException e) {
+			Assert.assertEquals(UserRegistrationException.ExceptionType.ENTERED_EMPTY, e.type);
+		}
 	}
+	
+	@Test
+    public void TestValidateMobilNumber() throws UserRegistrationException {
+    	UserRegistrationJUnit mobileNumberValidator = new UserRegistrationJUnit();
+    	boolean found = mobileNumberValidator.MobileNumberValidation("91 9999999999");
+    	Assert.assertTrue(found);
+    }
+	
+	@Test
+    public void TestValidateEmail() throws UserRegistrationException {
+    	UserRegistrationJUnit emailValidator = new UserRegistrationJUnit();
+    	boolean found = emailValidator.ValidateEmail("soumik.pal@gmail.co.in");
+    	Assert.assertTrue(found);
+    }
+	
+	@Test
+    public void TestValidatePasswordRule1() throws UserRegistrationException {
+    	UserRegistrationJUnit passwordValidator = new UserRegistrationJUnit();
+    	boolean found = passwordValidator.PasswordRule1Validation("Resurrection9");
+    	Assert.assertTrue(found);
+    }
+	
+	@Test
+    public void TestValidatePasswordRule2() throws UserRegistrationException {
+    	UserRegistrationJUnit passwordValidator = new UserRegistrationJUnit();
+    	boolean found = passwordValidator.PasswordRule2Validation("Resurrection9");
+    	Assert.assertTrue(found);
+    }
+	
+	@Test
+    public void TestValidatePasswordRule3() throws UserRegistrationException {
+    	UserRegistrationJUnit passwordValidator = new UserRegistrationJUnit();
+    	boolean found = passwordValidator.PasswordRule3Validation("Resurrection9");
+    	Assert.assertTrue(found);
+    }
+	
+	@Test
+    public void TestValidatePasswordRule4() throws UserRegistrationException {
+    	UserRegistrationJUnit passwordValidator = new UserRegistrationJUnit();
+    	boolean found = passwordValidator.PasswordRule4Validation("Resurrection@9");
+    	Assert.assertTrue(found);
+    }
 }
