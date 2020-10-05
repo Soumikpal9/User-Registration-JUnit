@@ -7,175 +7,35 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class UserRegistrationJUnit {
-	public boolean FirstNameValidation(String input) throws UserRegistrationException {
-		try {
-			if(input.length() == 0) {
-				throw new UserRegistrationException(UserRegistrationException.ExceptionType.ENTERED_EMPTY, "Please give a proper input");
-			}
-			String regex = "^[A-Z]+[a-z A-Z]{2,}";
-			Pattern pattern = Pattern.compile(regex);
-			Matcher matcher = pattern.matcher(input);
-			boolean found = matcher.find();
-			if(found) {
-				return true;
-			}
-			else {
-				return false;
-			}
-		}
-		catch(NullPointerException e) {
-			throw new UserRegistrationException(UserRegistrationException.ExceptionType.ENTERED_NULL, "Please give a proper input");
-		}
-	}
+	IValidate firstNameValidation = n -> {
+		return Pattern.compile("^[A-Z]+[a-z A-Z]{2,}").matcher(n).find() ? true : false;
+	};
 	
-	public boolean LastNameValidation(String input) throws UserRegistrationException {
-		try {
-			if(input.length() == 0) {
-				throw new UserRegistrationException(UserRegistrationException.ExceptionType.ENTERED_EMPTY, "Please give a proper input");
-			}
-			String regex = "^[A-Z]+[a-z A-Z]{2,}";
-			Pattern pattern = Pattern.compile(regex);
-			Matcher matcher = pattern.matcher(input);
-			boolean found = matcher.find();
-			if(found) {
-				return true;
-			}
-			else {
-				return false;
-			}
-		}
-		catch(NullPointerException e) {
-			throw new UserRegistrationException(UserRegistrationException.ExceptionType.ENTERED_NULL, "please give a proper input");
-		}
-	}
+	IValidate lastNameValidation = n -> {
+		return Pattern.compile("^[A-Z]+[a-z A-Z]{2,}").matcher(n).find() ? true : false;
+	};
 	
-	public boolean MobileNumberValidation(String input) throws UserRegistrationException {
-		try {
-			if(input.length() == 0) {
-				throw new UserRegistrationException(UserRegistrationException.ExceptionType.ENTERED_EMPTY, "Please give a proper input");
-			}
-			String regex = "^[0-9]{2}\s[0-9]{10}$";
-			Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
-			Matcher matcher = pattern.matcher(input);
-			boolean found = matcher.find();
-			if(found) {
-				return true;
-			}
-			else {
-				return false;
-			}
-		}
-		catch(NullPointerException e) {
-			throw new UserRegistrationException(UserRegistrationException.ExceptionType.ENTERED_NULL, "please give a proper input");
-		}
-	}
+	IValidate mobileNumberValidation = n -> {
+		return Pattern.compile("^[0-9]{2}\\s[0-9]{10}$").matcher(n).find() ? true : false;
+	};
 	
-	public boolean ValidateEmail(String input) throws UserRegistrationException {
-		try {
-			if(input.length() == 0) {
-				throw new UserRegistrationException(UserRegistrationException.ExceptionType.ENTERED_EMPTY, "Please give a proper input");
-			}
-			String regex = "^[A-Z]+([+._-]{0,1}([A-Z 0-9]+))*[@][A-Z 0-9]{1,}[.][A-Z]{2,}([.][A-Z]{2,}){0,1}$";
-			Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
-			Matcher matcher = pattern.matcher(input);
-			boolean found = matcher.find();
-			if(found) {
-				return true;
-			}
-			else {
-				return false;
-			}
-		}
-		catch(NullPointerException e) {
-			throw new UserRegistrationException(UserRegistrationException.ExceptionType.ENTERED_NULL, "please give a proper input");
-		}
-	}
+	IValidate emailValidation = n -> {
+		return Pattern.compile("^[A-Z]+([+._-]{0,1}([A-Z 0-9]+))*[@][A-Z 0-9]{1,}[.][A-Z]{2,}([.][A-Z]{2,}){0,1}$", Pattern.CASE_INSENSITIVE).matcher(n).find() ? true : false;
+	};
 	
-	public boolean PasswordRule1Validation(String input) throws UserRegistrationException {
-		try {
-			if(input.length() == 0) {
-				throw new UserRegistrationException(UserRegistrationException.ExceptionType.ENTERED_EMPTY, "Please give a proper input");
-			}
-			String regex = "[A-Z a-z 0-9]{8,}";
-			Pattern pattern = Pattern.compile(regex);
-			Matcher matcher = pattern.matcher(input);
-			boolean found = matcher.find();
-			if(found) {
-				return true;
-			}
-			else {
-				return false;
-			}
-		}
-		catch(NullPointerException e) {
-			throw new UserRegistrationException(UserRegistrationException.ExceptionType.ENTERED_NULL, "please give a proper input");
-		}
-	}
+	IValidate passwordRule1Validation = n -> {
+		return Pattern.compile("[A-Z a-z 0-9]{8,}").matcher(n).find() ? true : false;
+	};
 	
-	public boolean PasswordRule2Validation(String input) throws UserRegistrationException {
-		try {
-			if(input.length() == 0) {
-				throw new UserRegistrationException(UserRegistrationException.ExceptionType.ENTERED_EMPTY, "Please give a proper input");
-			}
-			String regex = "^[A-Z a-z]*(?=.*[A-Z])[A-Z a-z 0-9]*${8,}";
-			Pattern pattern = Pattern.compile(regex);
-			Matcher matcher = pattern.matcher(input);
-			boolean found = matcher.find();
-			if(found) {
-				return true;
-			}
-			else {
-				return false;
-			}
-		}
-		catch(NullPointerException e) {
-			throw new UserRegistrationException(UserRegistrationException.ExceptionType.ENTERED_NULL, "please give a proper input");
-		}
-	}
+	IValidate passwordRule2Validation = n -> {
+		return Pattern.compile("^[A-Z a-z]*(?=.*[A-Z])[A-Z a-z 0-9]*${8,}").matcher(n).find() ? true : false;
+	};
 	
-	public boolean PasswordRule3Validation(String input) throws UserRegistrationException {
-		try {
-			if(input.length() == 0) {
-				throw new UserRegistrationException(UserRegistrationException.ExceptionType.ENTERED_EMPTY, "Please give a proper input");
-			}
-			String regex = "^[A-Z a-z]*(?=.*[A-Z])(?=.*[0-9])[A-Z a-z 0-9]*${8,}";
-			Pattern pattern = Pattern.compile(regex);
-			Matcher matcher = pattern.matcher(input);
-			boolean found = matcher.find();
-			if(found) {
-				return true;
-			}
-			else {
-				return false;
-			}
-		}
-		catch(NullPointerException e) {
-			throw new UserRegistrationException(UserRegistrationException.ExceptionType.ENTERED_NULL, "please give a proper input");
-		}
-	}
+	IValidate passwordRule3Validation = n -> {
+		return Pattern.compile("^[A-Z a-z]*(?=.*[A-Z])(?=.*[0-9])[A-Z a-z 0-9]*${8,}").matcher(n).find() ? true : false;
+	};
 	
-	public boolean PasswordRule4Validation(String input) throws UserRegistrationException {
-		try {
-			if(input.length() == 0) {
-				throw new UserRegistrationException(UserRegistrationException.ExceptionType.ENTERED_EMPTY, "Please give a proper input");
-			}
-			String regex1 = "^[A-Z a-z]*(?=.*[A-Z])(?=.*[0-9])[A-Z a-z 0-9]*.{8,}$";
-			String regex2 = "^(?=.*[0-9 A-Z a-z])[0-9 A-Z a-z]*[$&+,:;=?@#|'<>.-^*()%!][0-9 A-Z a-z]*$";
-			Pattern pattern1 = Pattern.compile(regex1);
-			Pattern pattern2 = Pattern.compile(regex2);
-			Matcher matcher1 = pattern1.matcher(input);
-			Matcher matcher2 = pattern2.matcher(input);
-			boolean found1 = matcher1.find();
-			boolean found2 = matcher2.find();
-			if(found1 && found2) {
-				return true;
-			}
-			else {
-				return false;
-			}
-		}
-		catch(NullPointerException e) {
-			throw new UserRegistrationException(UserRegistrationException.ExceptionType.ENTERED_NULL, "please give a proper input");
-		}
-	}
+	IValidate passwordRule4Validation = n -> {
+		return (Pattern.compile("^[A-Z a-z]*(?=.*[A-Z])(?=.*[0-9])[A-Z a-z 0-9]*.{8,}$").matcher(n).find() && Pattern.compile("^(?=.*[0-9 A-Z a-z])[0-9 A-Z a-z]*[$&+,:;=?@#|'<>.-^*()%!][0-9 A-Z a-z]*$").matcher(n).find()) ? true : false;
+	};
 }
